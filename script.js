@@ -12,6 +12,8 @@ const mediaSrc = "/assets/mov_bbb.mp4"
 window.onload = () => {
   videoEl.src = mediaSrc
 
+  preEvents.textContent += `document.pictureInPictureEnabled=${document.pictureInPictureEnabled}`
+
   videoEl.onloadedmetadata = async () => {
     await videoEl.play()
   }
