@@ -3,6 +3,7 @@ const btnInline = document.querySelector("#btn-inline")
   , btnPinP = document.querySelector("#btn-pinp")
   , btnFullscreen = document.querySelector("#btn-fullscreen")
   , btnEnterFullscreen = document.querySelector("#btn-enter-fullscreen")
+  , btnToggle = document.querySelector("#btn-toggle")
 const preEvents = document.querySelector("#pre-events")
 
 const mediaSrc = "/assets/mov_bbb.mp4"
@@ -15,8 +16,24 @@ window.onload = () => {
     await videoEl.play()
   }
 
+  btnToggle.onclick = async () => {
+    if( videoEl.readyState > 0 )  {
+      if( videoEl.paused ) {
+        await videoEl.play()
+      } else {
+        videoEl.pause()
+      }
+    }
+  }
+
   videoEl.onplay = () => {
     preEvents.textContent += "\nvideo played"
+    btnToggle.textContent = "pause"
+  }
+
+  videoEl.onpause = () => {
+    preEvents.textContent += "\nvideo pause"
+    btnToggle.textContent = "play"
   }
 
   if( 
