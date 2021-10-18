@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>iOS presentationmode survey</title>
+  </head>
+  <body>
+    <h1>iOS presentationmode survey</h1>
+    <p>
+      This site will work on Safari 9.0+ only.
+    </p>
+    <video muted inline loop></video>
+    <hr>
+    <div>
+      <button id="btn-inline">inline</button>
+      <button id="btn-pinp">picture in picture</button>
+      <br/>
+      <button id="btn-fullscreen">fullscreen (
+        <code>webkitSetPresentationMode</code>
+      )</button>
+      <br/>
+      <button id="btn-enter-fullscreen">fullscreen (
+        <code>webkitEnterFullscreen</code>
+      )</button>
+    </div>
+    <div>
+      <h3>Events</h3>
+      <pre id="pre-events">
+      </pre>
+    </div>
+  </body>
+
+  <script src="./script.js"></script>
+</html>
