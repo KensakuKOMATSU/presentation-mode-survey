@@ -4,6 +4,7 @@ const btnInline = document.querySelector("#btn-inline")
   , btnFullscreen = document.querySelector("#btn-fullscreen")
   , btnEnterFullscreen = document.querySelector("#btn-enter-fullscreen")
   , btnToggle = document.querySelector("#btn-toggle")
+  , btnTogglePinp = document.querySelector("#btn-toggle-pinp")
 const preEvents = document.querySelector("#pre-events")
 
 const mediaSrc = "/assets/mov_bbb.mp4"
@@ -38,6 +39,26 @@ window.onload = () => {
     btnToggle.textContent = "play"
   }
 
+  if (document.pictureInPictureEnabled) {
+    btnTogglePinp.onclick = () => {
+      if (document.pictureInPictureElement) {
+          document.exitPictureInPicture();
+      } else {
+          videoEl.requestPictureInPicture();
+      }
+    }
+
+    videoEl.onenterpictureinpicture = () => {
+      preEvents.textContent += `\n[Standard] enterpictureinpicture`
+    }
+    videoEl.onleavepictureinpicture = () => {
+      preEvents.textContent += `\n[Standard] leavepictureinpicture`
+    }
+  } else {
+    btnTogglePinp.disabled = disabled
+  }
+
+
   if( 
     videoEl.webkitSupportsPresentationMode && 
     typeof videoEl.webkitSetPresentationMode === "function"
@@ -56,7 +77,7 @@ window.onload = () => {
     }
 
     videoEl.onwebkitpresentationmodechanged = () => {
-      preEvents.textContent += `\n${ videoEl.webkitPresentationMode }`
+      preEvents.textContent += `\n[webkit] ${ videoEl.webkitPresentationMode }`
     }
   } else {
     btnInline.disabled = true
