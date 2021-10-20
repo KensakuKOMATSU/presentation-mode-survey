@@ -5,18 +5,29 @@ const btnInline = document.querySelector("#btn-inline")
   , btnEnterFullscreen = document.querySelector("#btn-enter-fullscreen")
   , btnToggle = document.querySelector("#btn-toggle")
   , btnTogglePinp = document.querySelector("#btn-toggle-pinp")
+const checkUseHls= document.querySelector("#use-hls")
+const spanSrcUrl = document.querySelector("#src-url")
 const preEvents = document.querySelector("#pre-events")
 
 const mediaSrc = "/assets/mov_bbb.mp4"
+const hlsSrc = "https://38fb45b25cdb05a1.mediapackage.ap-northeast-1.amazonaws.com/out/v1/4ac4333c214740ef8115b1cf8339efc3/manifest.m3u8"
 
 
 window.onload = () => {
-  videoEl.src = mediaSrc
+  spanSrcUrl.textContent = checkUseHls.checked ? hlsSrc : mediaSrc
+  videoEl.src = spanSrcUrl.textContent
 
   preEvents.textContent += `document.pictureInPictureEnabled=${document.pictureInPictureEnabled}`
 
-  videoEl.onloadedmetadata = async () => {
-    await videoEl.play()
+  checkUseHls.onclick = () => {
+    const url = checkUseHls.checked ? hlsSrc : mediaSrc
+
+    if( checkUseHls.checked && !videoEl.canPlayType('application/vnd.apple.mpegurl') ) {
+      spanSrcUrl.textContent = "this browser does not support hls, natively"
+    } else {
+      spanSrcUrl.textContent = url
+      videoEl.src = url
+    }
   }
 
   btnToggle.onclick = async () => {

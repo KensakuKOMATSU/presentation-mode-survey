@@ -5,15 +5,26 @@
     <title>iOS presentationmode survey</title>
   </head>
   <body>
-    <h1>iOS presentationmode survey</h1>
+    <h1><a href="https://stupefied-kowalevski-dec611.netlify.app/">iOS presentationmode survey</a></h1>
     <p>
       All features will work on Safari 9.0+ only.<br />
       ( Video courtesy of <a href="https://www.bigbuckbunny.org/">Big Buck Bunny</a> )
     </p>
-    <video muted playsinline loop></video>
+    <video muted playsinline controls loop></video>
     <hr>
     <div>
-      <button id="btn-toggle">play</button><br/>
+      <p>
+        <label>
+          use hls&nbsp;
+          <input type="checkbox" id="use-hls">
+          <div>
+            src url : <span id="src-url"></span>
+          </div>
+        </label>
+      </p>
+      <p>
+        <button id="btn-toggle">play</button><br/>
+      </p>
       <div>
         <h3>Standard</h3>
         <button id="btn-toggle-pinp">toggle picture in picture</button>
